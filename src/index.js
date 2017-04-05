@@ -33,7 +33,7 @@
     get: guarded({
       inputs: [isArray, isSource],
       f: curry(get),
-      output: funAssert.pass()
+      output: funAssert.pass(true)
     })
   }
 
