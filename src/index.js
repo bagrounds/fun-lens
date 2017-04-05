@@ -32,7 +32,7 @@
   module.exports = {
     get: guarded({
       inputs: [isArray, isSource],
-      f: get,
+      f: curry(get),
       output: funAssert.pass()
     })
   }
