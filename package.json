@@ -36,12 +36,10 @@
     "tap": "^10.3.1"
   },
   "dependencies": {
-    "fun-apply": "^0.1.2",
-    "fun-assert": "^0.13.1",
-    "fun-case": "^0.1.1",
-    "fun-curry": "^0.2.5",
-    "fun-flip": "^0.1.1",
-    "fun-predicate": "^0.14.4",
-    "guarded": "^0.5.3"
+    "fun-array": "^0.6.0",
+    "fun-function": "^0.7.3",
+    "fun-object": "^0.6.1",
+    "fun-predicate": "^0.15.2",
+    "guarded": "^0.6.0"
   }
 }

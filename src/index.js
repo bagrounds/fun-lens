@@ -6,35 +6,22 @@
   'use strict'
 
   /* imports */
-  var curry = require('fun-curry')
-  var funCase = require('fun-case')
-  var funApply = require('fun-apply')
-  var flip = require('fun-flip')
-  var funPredicate = require('fun-predicate')
+  var predicate = require('fun-predicate')
   var guarded = require('guarded')
-  var funAssert = require('fun-assert')
+  var fn = require('fun-function')
+  var array = require('fun-array')
+  var object = require('fun-object')
 
-  var accessor = funCase([
-    {
-      p: funPredicate.type('Array'),
-      f: curry(flip(funApply))
-    },
-    {
-      p: funPredicate.type('String|Number'),
-      f: curry(flip(getProp))
-    }
-  ])
-
-  var isArray = funAssert.type('Array')
-  var isSource = funAssert.type('Array|Object|Function')
+  var isArray = predicate.type('Array')
+  var isSource = predicate.type('Array|Object|Function')
 
   /* exports */
   module.exports = {
-    get: guarded({
-      inputs: [isArray, isSource],
-      f: curry(get),
-      output: funAssert.pass(true)
-    })
+    get: fn.curry(guarded({
+      inputs: array.ap([isArray, isSource]),
+      f: get,
+      output: predicate.yes()
+    }))
   }
 
   /**
@@ -48,12 +35,8 @@
    */
   function get (keys, source) {
     return keys.reduce(function (source, key) {
-      return accessor(key)(source)
+      return (predicate.type('Array', key) ? fn.apply : object.get)(key)(source)
     }, source)
-  }
-
-  function getProp (source, key) {
-    return source[key]
   }
 })()
 
