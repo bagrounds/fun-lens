@@ -8,15 +8,17 @@
     "test": "tap -Rtap --coverage-report=text-summary ./test/index.js",
     "coverage": "tap --coverage-report=lcov ./test/index.js",
     "predependencies": "mkdir -p img",
-    "dependencies": "madge . --image img/dependencies.svg -x 'test|coverage|docs' --include-npm",
+    "dependencies": "madge src --image img/dependencies.svg -x 'public|test|coverage|docs' --include-npm",
     "postdependencies": "npm run dependencies-test",
-    "dependencies-test": "madge . --image img/dependencies-test.svg -x 'coverage|docs' --include-npm",
+    "dependencies-test": "madge . --image img/dependencies-test.svg -x 'dist|public|coverage|docs' --include-npm",
     "pages-index": "showdown makehtml -i README.md -o public/index.html",
     "pages": "./script/pages.sh",
-    "lint": "eslint --ignore-path .gitignore --fix .",
+    "lint": "eslint --ignore-path .gitignore --fix . --ignore-pattern dist",
     "predocument": "rm -rf docs",
     "document": "jsdoc -c .jsdoc.json",
-    "readme": "cat readme/* > README.md"
+    "browserify": "browserify dist/entry.js --no-bf | uglifyjs -cm > dist/bundle.js",
+    "readme": "cat readme/* > README.md",
+    "next-update": "next-update -k true --tldr"
   },
   "repository": {
     "type": "git",
@@ -29,17 +31,22 @@
   },
   "homepage": "https://gitlab.com/bagrounds/fun-lens#README",
   "devDependencies": {
-    "eslint": "^3.18.0",
-    "jsdoc": "^3.4.3",
-    "madge": "^1.6.0",
-    "showdown": "^1.6.4",
-    "tap": "^10.3.1"
+    "browserify": "^16.2.2",
+    "eslint": "5.1.0",
+    "fun-test": "^0.25.0",
+    "fun-test-runner": "^0.10.1",
+    "jsdoc": "3.5.5",
+    "madge": "3.2.0",
+    "next-update": "^3.6.0",
+    "showdown": "1.8.6",
+    "tap": "12.0.1"
   },
   "dependencies": {
-    "fun-array": "^0.6.0",
-    "fun-function": "^0.7.3",
-    "fun-object": "^0.6.1",
-    "fun-predicate": "^0.15.2",
-    "guarded": "^0.6.0"
+    "fun-array": "0.14.1",
+    "fun-function": "0.11.1",
+    "fun-object": "0.8.1",
+    "fun-predicate": "0.18.0",
+    "fun-type": "^0.8.1",
+    "guarded": "0.9.0"
   }
 }

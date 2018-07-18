@@ -2,27 +2,16 @@
  *
  * @module fun-lens
  */
-;(function () {
+;(() => {
   'use strict'
 
   /* imports */
-  var predicate = require('fun-predicate')
-  var guarded = require('guarded')
-  var fn = require('fun-function')
-  var array = require('fun-array')
-  var object = require('fun-object')
-
-  var isArray = predicate.type('Array')
-  var isSource = predicate.type('Array|Object|Function')
-
-  /* exports */
-  module.exports = {
-    get: fn.curry(guarded({
-      inputs: array.ap([isArray, isSource]),
-      f: get,
-      output: predicate.yes()
-    }))
-  }
+  const { curry, apply } = require('fun-function')
+  const { some } = require('fun-predicate')
+  const { ap, map, get: objectGet } = require('fun-object')
+  const { fun, tuple, object, string, array } = require('fun-type')
+  const { get: arrayGet } = require('fun-array')
+  const { inputs } = require('guarded')
 
   /**
    *
@@ -33,10 +22,22 @@
    *
    * @return {*} value at keys
    */
-  function get (keys, source) {
-    return keys.reduce(function (source, key) {
-      return (predicate.type('Array', key) ? fn.apply : object.get)(key)(source)
-    }, source)
-  }
+  const get = (keys, source) => keys.reduce(
+    (source, key) => (array(key)
+      ? apply
+      : string(key)
+        ? objectGet
+        : arrayGet
+    )(key)(source),
+    source
+  )
+
+  /* exports */
+  const api = { get }
+  const guards = map(inputs, {
+    get: tuple([array, some([array, object, fun])])
+  })
+
+  module.exports = map(curry, ap(guards, api))
 })()
 
