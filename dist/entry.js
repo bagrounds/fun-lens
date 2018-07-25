@@ -1,0 +1,2 @@
+funLens = require('../src')
+
