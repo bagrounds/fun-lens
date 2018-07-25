@@ -32,7 +32,7 @@
    * @return {*} value at keys
    */
   const get = (keys, source) => keys.reduce(
-    (source, key) => choose('get')(key)(source),
+    (source, key) => source == null ? null : choose('get')(key)(source),
     source
   )
 
@@ -77,7 +77,7 @@
   /* exports */
   const api = { get, set, update }
   const guards = map(inputs, {
-    get: tuple([array, some([array, object, fun])]),
+    get: tuple([array, any]),
     set: tuple([array, any, some([array, object, fun])]),
     update: tuple([array, fun, some([array, object, fun])])
   })

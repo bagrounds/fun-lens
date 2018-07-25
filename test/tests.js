@@ -15,9 +15,13 @@
     fold(concat, [], [
       map(append(get('get')), [
         [[['a'], {}], equalDeep(null)],
+        [[['a', 'b'], {}], equalDeep(null)],
+        [[['a', 1], {}], equalDeep(null)],
+        [[['a', [1]], {}], equalDeep(null)],
         [[['a'], { a: 1 }], equalDeep(1)],
         [[[1], [8, 3]], equalDeep(3)],
         [[[[2]], n => n * 2], equalDeep(4)],
+        [[[[]], () => 42], equalDeep(42)],
         [[['a'], { a: [1] }], equalDeep([1])],
         [[['a', 0], { a: [1] }], equalDeep(1)],
         [[['a', 0, [2]], { a: [x => x * 2] }], equalDeep(4)],
