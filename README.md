@@ -12,7 +12,7 @@ Focus on a path of keys and function results
 
 ## [Test Coverage](https://bagrounds.gitlab.io/fun-lens/coverage/lcov-report/index.html)
 
-## [API Docs](https://bagrounds.gitlab.io/fun-lens/docs/index.html)
+## [API Docs](https://bagrounds.gitlab.io/fun-lens/index.html)
 
 ## Dependencies
 
