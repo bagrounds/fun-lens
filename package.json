@@ -32,7 +32,8 @@
   "homepage": "https://gitlab.com/bagrounds/fun-lens#README",
   "devDependencies": {
     "browserify": "^16.2.2",
-    "eslint": "5.1.0",
+    "eslint": "5.2.0",
+    "fun-arrange": "^0.1.4",
     "fun-test": "^0.25.0",
     "fun-test-runner": "^0.10.1",
     "jsdoc": "3.5.5",
