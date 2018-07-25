@@ -34,6 +34,7 @@
     "browserify": "^16.2.2",
     "eslint": "5.2.0",
     "fun-arrange": "^0.1.4",
+    "fun-scalar": "^0.6.0",
     "fun-test": "^0.25.0",
     "fun-test-runner": "^0.10.1",
     "jsdoc": "3.5.5",
@@ -43,8 +44,9 @@
     "tap": "12.0.1"
   },
   "dependencies": {
-    "fun-array": "0.14.1",
-    "fun-function": "0.11.1",
+    "fun-array": "^0.14.2",
+    "fun-case": "^0.2.0",
+    "fun-function": "^0.12.0",
     "fun-object": "0.8.1",
     "fun-predicate": "0.18.0",
     "fun-type": "^0.8.1",
